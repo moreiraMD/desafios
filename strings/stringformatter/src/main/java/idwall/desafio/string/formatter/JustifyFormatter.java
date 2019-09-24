@@ -2,7 +2,10 @@ package idwall.desafio.string.formatter;
 
 import idwall.desafio.string.formatter.abstracts.SizeFormatter;
 
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+
+import static java.util.Arrays.stream;
 
 public class JustifyFormatter extends SizeFormatter {
     public JustifyFormatter(int lineSize) {
@@ -11,22 +14,16 @@ public class JustifyFormatter extends SizeFormatter {
 
     @Override
     public String format(String text) {
-        StringBuilder builder = new StringBuilder();
+        String builder;
 
         String[] split = text.split("(?=\\n)");
 
-        for (String line : split) {
-            String cleanLine = line.replace("\n", "");
+        builder = stream(split)
+                .map(this::toArray)
+                .map(cleanVector -> fullJustify(cleanVector, this.getLineSize()))
+                .collect(Collectors.joining());
 
-            String[] cleanVector = toArray(cleanLine);
-
-            String justifyLine = fullJustify(cleanVector, this.getLineSize());
-
-            builder.append(justifyLine)
-                    .append("\n");
-        }
-
-        return builder.toString();
+        return builder;
     }
 
     private String[] toArray(String line) {
@@ -58,7 +55,9 @@ public class JustifyFormatter extends SizeFormatter {
     }
 
     private int[] cut(String[] words, int start, int maxWidth) {
-        int len = words[start].length();
+        String startWord = words[start].replace("\n", "");
+
+        int len = startWord.length();
         int charLen = len;
         int end = start;
 
@@ -77,10 +76,12 @@ public class JustifyFormatter extends SizeFormatter {
         StringBuilder sb = new StringBuilder();
         sb.append(words[start]);
 
+        if (words[start].matches("^\\s*$")) {
+            return sb.toString();
+        }
+
         if(start == end) {
-            for(int i = 0 ; i < space ; i++) {
-                sb.append(' ');
-            }
+            sb.append(" ".repeat(Math.max(0, space)));
             return sb.toString();
         }
 
