@@ -1,0 +1,9 @@
+version: '3'
+services:
+  string_formatter:
+    build: .
+    image: string_formatter
+    container_name: string_formatter
+    ports:
+      - 8080:8080
+    command: ["java", "-jar", "/app.jar"]

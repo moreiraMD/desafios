@@ -1,0 +1,88 @@
+{
+	"info": {
+		"_postman_id": "43dea5b1-6fd2-47d9-96c3-3352c41e10ea",
+		"name": "IdWall",
+		"description": "Projeto para realização do desafio para Desenvolvedor na IdWall",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "withJustify",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"text\": \"In the beginning God created the heavens and the earth. Now the earth was formless and empty, darkness was over the surface of the deep, and the Spirit of God was hovering over the waters.\\n\\nAnd God said, \\\"Let there be light,\\\" and there was light. God saw that the light was good, and he separated the light from the darkness. God called the light \\\"day,\\\" and the darkness he called \\\"night.\\\" And there was evening, and there was morning - the first day.\"\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/strings/formatter?width=40&justify=true",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"strings",
+						"formatter"
+					],
+					"query": [
+						{
+							"key": "width",
+							"value": "40"
+						},
+						{
+							"key": "justify",
+							"value": "true"
+						}
+					]
+				},
+				"description": "Request with 40 width and justify "
+			},
+			"response": []
+		},
+		{
+			"name": "withoutJustify",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"text\": \"In the beginning God created the heavens and the earth. Now the earth was formless and empty, darkness was over the surface of the deep, and the Spirit of God was hovering over the waters.\\n\\nAnd God said, \\\"Let there be light,\\\" and there was light. God saw that the light was good, and he separated the light from the darkness. God called the light \\\"day,\\\" and the darkness he called \\\"night.\\\" And there was evening, and there was morning - the first day.\"\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/strings/formatter?width=40",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"strings",
+						"formatter"
+					],
+					"query": [
+						{
+							"key": "width",
+							"value": "40"
+						}
+					]
+				},
+				"description": "Request only with 40 width"
+			},
+			"response": []
+		}
+	]
+}

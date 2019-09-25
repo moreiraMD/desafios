@@ -1,0 +1,9 @@
+version: '3'
+services:
+  reddit_crawler:
+    build: .
+    image: reddit_crawler
+    container_name: reddit_crawler
+    environment:
+      REDDIT_URI: ""
+    command: ["java", "-jar", "/app.jar", "cats;dogs"]
