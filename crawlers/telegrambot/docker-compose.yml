@@ -1,0 +1,10 @@
+version: '3'
+services:
+  bot:
+    build: .
+    image: crawler_bot
+    container_name: crawler_bot
+    environment:
+      BOT_NAME: "redditCrawlerBot"
+      BOT_TOKEN: ""
+    command: ["java", "-jar", "/botapp.jar"]
